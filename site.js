@@ -22,11 +22,61 @@
   if (config.boardEmail) {
     const emailDisplay = document.getElementById("board-email-display");
     const emailButton = document.getElementById("email-button");
-    emailDisplay.textContent = config.boardEmail;
-    emailButton.textContent = "Email the board";
-    emailButton.href = "mailto:" + config.boardEmail;
-    emailButton.classList.remove("is-disabled");
-    emailButton.removeAttribute("aria-disabled");
+    if (emailDisplay) emailDisplay.textContent = config.boardEmail;
+    if (emailButton) {
+      emailButton.textContent = "Email the association";
+      emailButton.href = "mailto:" + config.boardEmail;
+      emailButton.classList.remove("is-disabled");
+      emailButton.removeAttribute("aria-disabled");
+    }
+  }
+
+  const boardDirectory = document.getElementById("board-directory");
+  if (boardDirectory && Array.isArray(config.boardMembers)) {
+    boardDirectory.replaceChildren();
+
+    config.boardMembers.forEach(function (member) {
+      if (!member || !member.role || !member.name) return;
+
+      const row = document.createElement("div");
+      row.className = "board-officer";
+
+      const identity = document.createElement("div");
+      identity.className = "board-identity";
+
+      const role = document.createElement("span");
+      role.textContent = member.role;
+
+      const name = document.createElement("strong");
+      name.textContent = member.name;
+
+      identity.append(role, name);
+      row.appendChild(identity);
+
+      if (member.email) {
+        const email = document.createElement("a");
+        email.href = "mailto:" + member.email;
+        email.textContent = member.email;
+        email.setAttribute("aria-label", "Email " + member.name + ", " + member.role);
+        row.appendChild(email);
+      }
+
+      boardDirectory.appendChild(row);
+    });
+
+    if (Array.isArray(config.membersAtLarge) && config.membersAtLarge.length) {
+      const atLarge = document.createElement("div");
+      atLarge.className = "board-at-large";
+
+      const label = document.createElement("span");
+      label.textContent = "Members at Large";
+
+      const names = document.createElement("p");
+      names.textContent = config.membersAtLarge.join(" · ");
+
+      atLarge.append(label, names);
+      boardDirectory.appendChild(atLarge);
+    }
   }
 
   if (config.googleCalendarId) {

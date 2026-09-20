@@ -202,7 +202,7 @@ h3 {
 .hero {
   position: relative;
   overflow: hidden;
-  background: var(--navy-950) url("assets/ppoa-hero-background.png") center/cover no-repeat;
+  background: var(--navy-950) url("assets/ppoa-hero-background.webp") center/cover no-repeat;
   color: #fff;
 }
 
@@ -628,6 +628,15 @@ h3 {
   margin: 4px 0 0;
 }
 
+.contact-intro {
+  margin: 14px 0 0;
+  color: #cedbe7;
+}
+
+.contact-primary .button {
+  margin-top: 26px;
+}
+
 .contact-action {
   border-top: 4px solid var(--gold);
   background: #f5f7f9;
@@ -644,6 +653,60 @@ h3 {
 .contact-action small {
   display: block;
   margin-top: 18px;
+  color: var(--muted);
+}
+
+.board-directory {
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.board-officer {
+  display: grid;
+  grid-template-columns: minmax(150px, .7fr) minmax(190px, 1fr);
+  gap: 22px;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.board-identity span,
+.board-identity strong {
+  display: block;
+}
+
+.board-identity span,
+.board-at-large span {
+  color: var(--gold-dark);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.board-identity strong {
+  margin-top: 2px;
+  color: var(--navy-950);
+}
+
+.board-officer a {
+  color: var(--blue);
+  font-size: .9rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  text-underline-offset: 3px;
+}
+
+.board-at-large {
+  padding: 18px 0 2px;
+}
+
+.board-at-large p {
+  margin: 6px 0 0;
+  color: var(--ink);
+}
+
+.directory-placeholder {
   color: var(--muted);
 }
 
@@ -868,6 +931,11 @@ footer {
   .contact-card,
   .contact-action {
     padding: 27px;
+  }
+
+  .board-officer {
+    grid-template-columns: 1fr;
+    gap: 5px;
   }
 
 }
